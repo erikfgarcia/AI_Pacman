@@ -125,7 +125,7 @@ def breadthFirstSearch(problem):
     ListOfActions = [] # Here we store the actions
     myQueue = util.Queue() # We search from the first node BFS 
     myQueue.push((problem.getStartState(), ListOfActions)) #place the starting node onto the stack along with the list of actions 
-    while myQueue:
+    while myQueue:   
         currentNode, actions = myQueue.pop()  # current position and the actions 
         if not currentNode in exploredNode:  #Check if currentNode has been visited
             if problem.isGoalState(currentNode):# The search is done
@@ -141,6 +141,16 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
+    """
+    getCostOfActions() Returns the cost of a particular sequence of actions.  If those actions
+    include an illegal move, return 999999.  This is implemented for you.
+    
+    PriorityQueue:
+       Implements a priority queue data structure. Each inserted item
+       has a priority associated with it and the client is usually interested
+       in quick retrieval of the lowest-priority item in the queue. This
+       data structure allows O(1) access to the lowest-priority item.
+    """
     exploredNode = [] # Keeps record of explored nodes
     ListOfActions = [] # Here we store the actions
     myQueue = util.PriorityQueue() #  
@@ -154,8 +164,8 @@ def uniformCostSearch(problem):
             for successor in problem.getSuccessors(currentNode):
                 location, action, stepCost= successor # lets get the successor info 
                 updateActions = actions + [action]  # move towards the new node 
-                cost = problem.getCostOfActions(updateActions)   
-                myQueue.push((location, updateActions), cost) # place new node onto the stack with updated list of actions  
+                priority = problem.getCostOfActions(updateActions) # cost
+                myQueue.push((location, updateActions), priority) # insert new node  quick retrieval of the lowest-priority (cost) item in the queue.  
     return []
 
 #    util.raiseNotDefined()
@@ -184,8 +194,8 @@ def aStarSearch(problem, heuristic=nullHeuristic):
             for successor in problem.getSuccessors(currentNode):
                 location, action, stepCost= successor # lets get the successor info 
                 updateActions = actions + [action]  # move towards the new node 
-                cost = problem.getCostOfActions(updateActions) + heuristic(location, problem)
-                myQueue.push((location, updateActions), cost) # place new node onto the stack with updated list of actions  
+                priority = problem.getCostOfActions(updateActions) + heuristic(location, problem) # cost + heuristic cost
+                myQueue.push((location, updateActions), priority) # insert new node  quick retrieval of the lowest-priority (cost) item in the queue.  
     return []
 #    util.raiseNotDefined()
 
