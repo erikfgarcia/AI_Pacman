@@ -496,11 +496,15 @@ def foodHeuristic(state, problem):
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
     food = foodGrid.asList()
-    try:
-        return max(tuple(map(lambda x: mazeDistance(position, x, problem.startingGameState), food)))
-    # End the search heuristic if no food exists on the grid
-    except Exception as e:
-        return 0
+    
+    distance = 0 
+    toReturn  = 0
+    for item in food:
+        distance = mazeDistance(position, item, problem.startingGameState)
+        if distance > toReturn:
+            toReturn = distance 
+
+    return toReturn
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
@@ -568,7 +572,6 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         "*** YOUR CODE HERE ***"
-# The goal state is reached if Pacman is in the same position as a piece of food
         return (x, y) in self.food.asList()
         #util.raiseNotDefined()
 
