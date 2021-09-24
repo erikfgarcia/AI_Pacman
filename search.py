@@ -91,15 +91,13 @@ def depthFirstSearch(problem):
     #print("Start:", problem.getStartState())
     #print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     #print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-
-# Remember that a search node must contain not only a state but also the information necessary to reconstruct the path (plan) which gets to that state.
-
-#Important note: All of your search functions need to return a list of actions that will lead the agent from the start to the goal. These actions all have to be legal moves (valid directions, no moving through walls).
-
-#Important note: Make sure to use the Stack, Queue and PriorityQueue data structures .
-
-#Algorithms for DFS, BFS, UCS, and A* differ only in the details of how the fringe is managed. 
-
+    """
+    Remember that a search node must contain not only a state but also the information necessary to reconstruct the path (plan) which gets to that state.
+    Important note: All of your search functions need to return a list of actions that will lead the agent from the start to the goal. 
+    These actions all have to be legal moves (valid directions, no moving through walls).
+    Important note: Make sure to use the Stack, Queue and PriorityQueue data structures .
+    Algorithms for DFS, BFS, UCS, and A* differ only in the details of how the fringe is managed. 
+    """
    
     exploredNode = [] # Keeps record of explored nodes
     ListOfActions = [] # Here we store the actions
